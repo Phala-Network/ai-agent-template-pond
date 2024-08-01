@@ -1,5 +1,5 @@
 {
-  "name": "ai-agent-openai-template",
+  "name": "ai-agent-pond-template",
   "version": "0.0.1",
   "license": "MIT",
   "engines": {
@@ -19,6 +19,5 @@
     "typescript": "^5.3.3"
   },
   "dependencies": {
-    "openai": "^4.52.3"
   }
 }

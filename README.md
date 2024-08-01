@@ -1,27 +1,23 @@
 <div align="center">
-  <a href="https://github.com/Phala-Network/ai-agent-template-openai">
-    <h1>AI Agent Contract Template with OpenAI</h1>
+  <a href="https://github.com/Phala-Network/ai-agent-template-pond">
+    <h1>AI Agent Contract Template with Pond</h1>
     <img height="320" src="./public/AI-Agent-Contract.jpg" />
-    <br />
-  </a>
-  <a href="https://platform.openai.com/docs/api-reference">
-    <img height="32" src="public/powered-by-openai-badge-filled-on-light.svg" />
     <br />
   </a>
   <p align="center">
     Host your AI Agent Contract on Phala's decentralized serverless cloud.
     <br />
-    <a href="https://github.com/Phala-Network/ai-agent-template-openai"><strong>Explore the docs »</strong></a>
+    <a href="https://github.com/Phala-Network/ai-agent-template-pond"><strong>Explore the docs »</strong></a>
     <br />
     <br />
     <a href="QmQu9AmBL13tyGpxgg5ASt96WQ669p63rnJRWiAo9st8ns/0?key=c0c0105ba56276cd&chatQuery=When%20did%20humans%20land%20on%20the%20moon">View Demo</a>
     ·
-    <a href="https://github.com/Phala-Network/ai-agent-template-openai/issues">Report Bug</a>
+    <a href="https://github.com/Phala-Network/ai-agent-template-pond/issues">Report Bug</a>
     ·
     <a href="https://discord.gg/DXGGJajW">Discord</a>
   </p>
 
-  <h3>Architecure Overview</h3>
+  <h3>Architecture Overview</h3>
   <img height="320" src="./public/ai-agent-architecture.jpg" />
 </div>
 
@@ -31,7 +27,7 @@
   <img height="240" src="https://www.jlwranglerforums.com/forum/attachments/zoolander-gif.325299/">
 </div>
 
-The OpenAI AI Agent template is a **MINIMAL** template to build an AI Agent that can be hosted on Phala Network's decentralized hosting protocol. Unlike Vercel or other FaaS, it allows you to publish your AI Agent compiled code to IPFS and hosts it on a fully decentralized FaaS cloud with the following benefits:
+The Pond AI Agent template is a **MINIMAL** template to build an AI Agent that can be hosted on Phala Network's decentralized hosting protocol. Unlike Vercel or other FaaS, it allows you to publish your AI Agent compiled code to IPFS and hosts it on a fully decentralized FaaS cloud with the following benefits:
 
 - 💨 Ship Fast: Build and ship with familiar toolchain in minutes
 - ⛑️ Secure: Execution guarded by rock solid TEE / Intel SGX
@@ -48,16 +44,6 @@ npm install
 ```
 
 ### Testing Locally
-Create `.env` file and add your OpenAI API Key
-```shell
-cp .env.example .env
-```
-
-In `.env` file replace `YOUR_OPENAI_KEY` with your API Key
-```text
-OPENAI_API_KEY="YOUR_OPENAI_KEY"
-```
-
 Build your Agent
 ```shell
 npm run build
@@ -70,11 +56,7 @@ npm run test
 
 Expected Test Results
 ```shell
-
-> phat-gpt-template@0.0.1 test
-> tsx src/test.ts
-
-INPUT: {"method":"GET","path":"/ipfs/QmVHbLYhhYA5z6yKpQr4JWr3D54EhbSsh7e7BFAAyrkkMf","queries":{"chatQuery":["Who are you?"],"openAiModel":["gpt-4o"]},"secret":{"openaiApiKey":"OPENAI_API_KEY"},"headers":{}}
+INPUT: {"method":"GET","path":"/ipfs/QmVHbLYhhYA5z6yKpQr4JWr3D54EhbSsh7e7BFAAyrkkMf","queries":{"tokenAddress":["0x2260FAC5E5542a773Aa44fBCfeDf7C193bc2C599"]},"headers":{}}
 GET RESULT: {
   status: 200,
   body: '\n' +
@@ -86,21 +68,12 @@ GET RESULT: {
     '        </head>\n' +
     '        <body>\n' +
     '            <div align="center">\n' +
-    '                <p>"OpenAI AI Agent Contract hosted on <a href="https://github.com/Phala-Network/ai-agent-template-openai">Phala Network</a>, an AI Coprocessor for hosting AI Agents."</p>\n' +
+    '                <p>"Pond AI Agent Contract hosted on <a href="https://github.com/Phala-Network/ai-agent-template-pond">Phala Network</a>, an AI Coprocessor for hosting AI Agents."</p>\n' +
     '                <img src="https://i.imgur.com/8B3igON.png" width="600" alt="AI Agent Contract" />\n' +
-    '                <p>I am an AI language model created by OpenAI, designed to assist with information, answer questions, and provide support on a wide range of topics. How can I help you today?</p>\n' +
+    '                <p>WBTC token is predicted to move by $ -280.63 in the next hour</p>\n' +
     '            </div>\n' +
     '        </body>\n' +
     '    </html>',
-  headers: {
-    'Content-Type': 'text/html; charset=UTF-8',
-    'Access-Control-Allow-Origin': '*'
-  }
-}
-INPUT: {"method":"POST","path":"/ipfs/QmVHbLYhhYA5z6yKpQr4JWr3D54EhbSsh7e7BFAAyrkkMf","queries":{"chatQuery":["When did humans land on the moon?"],"openAiModel":["gpt-4o"]},"secret":{"openaiApiKey":"OPENAI_API_KEY"},"headers":{},"body":"{\"untrustedData\":{\"fid\":2,\"url\":\"https://fcpolls.com/polls/1\",\"messageHash\":\"0xd2b1ddc6c88e865a33cb1a565e0058d757042974\",\"timestamp\":1706243218,\"network\":1,\"buttonIndex\":2,\"castId\":{\"fid\":226,\"hash\":\"0xa48dd46161d8e57725f5e26e34ec19c13ff7f3b9\"}},\"trustedData\":{\"messageBytes\":\"d2b1ddc6c88e865a33cb1a565e0058d757042974...\"}}"}
-POST RESULT: {
-  status: 200,
-  body: 'Not Implemented',
   headers: {
     'Content-Type': 'text/html; charset=UTF-8',
     'Access-Control-Allow-Origin': '*'
@@ -112,7 +85,7 @@ To test in the SideVM playground go to https://phat.phala.network/contracts/view
 Connect you polkadot.js account and select 'run_js' with the parameters:
 - engine: SidevmQuickJSWithPolyfill
 - js_code: Source code text of dist/index.ts
-- args: {"method":"GET","path":"/ipfs/QmVHbLYhhYA5z6yKpQr4JWr3D54EhbSsh7e7BFAAyrkkMf","queries":{"chatQuery":["Who are you?"],"openAiModel":["gpt-4o"]},"secret":{"openaiApiKey":"OPENAI_API_KEY"},"headers":{}}
+- args: {"method":"GET","path":"/ipfs/QmVHbLYhhYA5z6yKpQr4JWr3D54EhbSsh7e7BFAAyrkkMf","queries":{"tokenAddress":["0x2260FAC5E5542a773Aa44fBCfeDf7C193bc2C599"]},"headers":{}}
 Watch video here for to see the visual steps of testing in Sidevm playground: https://www.youtube.com/watch?v=fNqNeLfFFME
 
 Make sure to replace queries and secret with your values compatible with your AI Agent Contract.
@@ -124,11 +97,15 @@ Upload your compiled AI Agent code to IPFS.
 npm run publish-agent
 ```
 
+> **Note**
+> 
+> If ThirdWeb does not work, use the following to publish your script to IPFS:
+> ```shell
+> curl -F file=@./dist/index.js https://agents.phala.network/ipfs
+> ```
+
 Upon a successful upload, the command should show the URL to access your AI Agent.
 ```shell
-> phat-gpt-template@0.0.1 publish-agent
-> phat-fn build --experimentalAsync && tsx scripts/publish.ts
-
 ✓ Compiled successfully.
   72.73 KB  dist/index.js
 
@@ -176,28 +153,28 @@ By default, all the compiled JS code is visible for anyone to view if they look 
 <details>
 <summary><b>How to Add Secrets</b></summary>
 
-The steps to add a `secret` is simple. We will add the [OpenAI](https://platform.openai.com/docs/quickstart?context=node) API Key in this example by creating a secret JSON object with the `openaiApiKey`:
+The steps to add a `secret` is simple.
 
 ```json
-{"openaiApiKey": "<OPENAI_API_KEY>"}
+{"secretKey": "<SECRET_VALUE>"}
 ```
 
 Then in your frame code, you will be able to access the secret key via `req.secret` object:
 
 ```js
 async function POST(req: Request): Promise<Response> {
-    const apiKey = req.secret?.apiKey
+    const apiKey = req.secret?.secretKey
 }
 ```
 
 > **Note**: Before continuing, make sure to publish your compiled AI Agent JS code, so you can add secrets to the CID.
 
 **Open terminal**
-Use `curl` to `POST` your secrets to `https://agents.phala.network/vaults`. Replace `IPFS_CID` with the CID to the compile JS code in IPFS, and replace `<OPENAI_API_KEY>` with your OpenAI API key. Note that you can name the secret field name something other than `openaiApiKey`, but you will need to access the key in your `index.ts` file with the syntax `req.secret?.<your-secret-field-name> as string`
+Use `curl` to `POST` your secrets to `https://agents.phala.network/vaults`. Replace `IPFS_CID` with the CID to the compile JS code in IPFS, and replace `<OPENAI_API_KEY>` with your Pond API key. Note that you can name the secret field name something other than `secretKey`, but you will need to access the key in your `index.ts` file with the syntax `req.secret?.<your-secret-field-name> as string`
 
 The command will look like this:
 ```shell
-curl https://agents.phala.network/vaults -H 'Content-Type: application/json' -d '{"cid": "IPFS_CID", "data": {"openaiApiKey": "<OPENAI_API_KEY>"}}'
+curl https://agents.phala.network/vaults -H 'Content-Type: application/json' -d '{"cid": "IPFS_CID", "data": {"secretKey": "<SECRET_VALUE>"}}'
 # Output:
 # {"token":"e85ae53d2ba4ca8d","key":"e781ef31210e0362","succeed":true}
 ```
@@ -211,7 +188,7 @@ curl https://agents.phala.network/vaults/<key>/<token>
 
 Expected output:
 ```shell
-{"data":{"openaiApiKey":"<OPENAI_API_KEY>"},"succeed":true}
+{"data":{"secretKey":"<SECRET_VALUE>"},"succeed":true}
 ```
 
 If you are using secrets, make sure that your URL is set in the following syntax where `cid` is the IPFS CID of your compiled JS file and `key` is the `key` from adding secrets to your vault.

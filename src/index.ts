@@ -1,21 +1,23 @@
 import { Request, Response, route } from './httpSupport'
 import { renderHtml } from './uiSupport'
 
-import OpenAI from 'openai'
-
 async function GET(req: Request): Promise<Response> {
-    const secret = req.queries?.key ?? '';
-    const openaiApiKey = req.secret?.openaiApiKey as string;
-    const openai = new OpenAI({ apiKey: openaiApiKey })
-    const openAiModel = (req.queries.openAiModel) ? req.queries.openAiModel[0] : 'gpt-4o';
-    const query = req.queries.chatQuery[0] as string;
+    const tokenAddress = req.queries.tokenAddress[0] as string;
+    const pondBaseUrl = `http://model-v2-api-471546444.us-east-1.elb.amazonaws.com:8001/api/v1/predict`;
 
-    const completion = await openai.chat.completions.create({
-        messages: [{ role: "system", content: `${query}` }],
-        model: `${openAiModel}`,
-    });
+    const pondResult = await fetch(pondBaseUrl);
+    let pondPredictions = await pondResult.json();
+    let pondPrediction;
+    for (pondPrediction of pondPredictions) {
+        if (pondPrediction.address == tokenAddress.toLowerCase()) {
+          console.log(pondPrediction)
+          break;
+        }
+    }
 
-    return new Response(renderHtml(completion.choices[0].message.content as string))
+    const result = `WBTC token is predicted to move by $ ${pondPrediction.prediction} in the next hour`;
+
+    return new Response(renderHtml(result))
 }
 
 async function POST(req: Request): Promise<Response> {
