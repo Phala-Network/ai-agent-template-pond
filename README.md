@@ -197,7 +197,7 @@ https://agents.phala.network/ipfs/<cid>?key=<key>
 ```
 
 Example:
-https://agents.phala.network/ipfs/Qma2WjqWqW8wYG2tEQ9YFUgyVrMDA9VzvkkdeFny7Smn3R/0?key=686df81d326fa5f2&chatQuery=When%20did%20humans%20land%20on%20the%20moon
+https://agents.phala.network/ipfs/QmWMUjjC1jDapwTudYxcUqdp8Krt6ngREnSkU9Byz2EvzR/0?tokenAddress=0x2260FAC5E5542a773Aa44fBCfeDf7C193bc2C599
 
 </details>
 
@@ -232,7 +232,7 @@ The example at https://agents.phala.network/ipfs/Qma2WjqWqW8wYG2tEQ9YFUgyVrMDA9V
   <li>Available features: ES2023, async, fetch, setTimeout, setInterval, bigint</li>
   <li>Resource limits</li>
   <ul>
-    <li>Max execution time ~60s</li>
+    <li>Max execution time ~120s</li>
     <li>Max memory usage: 16 mb</li>
     <li>Max code size: 500 kb</li>
     <li>Limited CPU burst: CPU time between async calls is limited. e.g. Too complex for-loop may hit the burst limit.</li>
