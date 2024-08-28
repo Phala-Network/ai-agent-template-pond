@@ -8,6 +8,7 @@
   "scripts": {
     "build": "phat-fn build --experimentalAsync",
     "test": "tsx src/test.ts",
+    "set-secrets": "tsx scripts/setSecrets.ts",
     "lint": "tsc --noEmit",
     "publish-agent": "phat-fn build --experimentalAsync && tsx scripts/publish.ts"
   },

@@ -10,11 +10,11 @@
     <a href="https://github.com/Phala-Network/ai-agent-template-pond"><strong>Explore the docs »</strong></a>
     <br />
     <br />
-    <a href="QmQu9AmBL13tyGpxgg5ASt96WQ669p63rnJRWiAo9st8ns/0?key=c0c0105ba56276cd&chatQuery=When%20did%20humans%20land%20on%20the%20moon">View Demo</a>
+    <a href="https://wapo-testnet.phala.network/ipfs/QmRHzszaBNMje6Yb373kmA8itWtn8c2vUnBs4ibfFfJVyB">View Demo</a>
     ·
     <a href="https://github.com/Phala-Network/ai-agent-template-pond/issues">Report Bug</a>
     ·
-    <a href="https://discord.gg/DXGGJajW">Discord</a>
+    <a href="https://discord.gg/phala-network">Discord</a>
   </p>
 
   <h3>Architecture Overview</h3>
@@ -56,39 +56,20 @@ npm run test
 
 Expected Test Results
 ```shell
-INPUT: {"method":"GET","path":"/ipfs/QmVHbLYhhYA5z6yKpQr4JWr3D54EhbSsh7e7BFAAyrkkMf","queries":{"tokenAddress":["0x2260FAC5E5542a773Aa44fBCfeDf7C193bc2C599"]},"headers":{}}
+INPUT: {"method":"GET","path":"/ipfs/CID","queries":{"tokenAddress":["0x2260FAC5E5542a773Aa44fBCfeDf7C193bc2C599"]},"headers":{}}
 GET RESULT: {
   status: 200,
-  body: '\n' +
-    '    <!DOCTYPE html>\n' +
-    '    <html lang="en">\n' +
-    '        <head>\n' +
-    '            <meta charset="utf-8" />\n' +
-    '            <title>AI Agent Contract Demo UI</title>\n' +
-    '        </head>\n' +
-    '        <body>\n' +
-    '            <div align="center">\n' +
-    '                <p>"Pond AI Agent Contract hosted on <a href="https://github.com/Phala-Network/ai-agent-template-pond">Phala Network</a>, an AI Coprocessor for hosting AI Agents."</p>\n' +
-    '                <img src="https://i.imgur.com/8B3igON.png" width="600" alt="AI Agent Contract" />\n' +
-    '                <p>WBTC token is predicted to move by $ -280.63 in the next hour</p>\n' +
-    '            </div>\n' +
-    '        </body>\n' +
-    '    </html>',
+  body: 'WBTC token is predicted to move by $ -280.63 in the next hour' +
   headers: {
-    'Content-Type': 'text/html; charset=UTF-8',
+    'Content-Type': 'application/json',
     'Access-Control-Allow-Origin': '*'
   }
 }
 
-To test in the SideVM playground go to https://phat.phala.network/contracts/view/0xf0a398600f02ea9b47a86c59aed61387e450e2a99cb8b921cd1d46f734e45409
+**NOTE**:
+This is a local test and your published code could have a different result when executing in the TEE on Phala Network.
 
-Connect you polkadot.js account and select 'run_js' with the parameters:
-- engine: SidevmQuickJSWithPolyfill
-- js_code: Source code text of dist/index.ts
-- args: {"method":"GET","path":"/ipfs/QmVHbLYhhYA5z6yKpQr4JWr3D54EhbSsh7e7BFAAyrkkMf","queries":{"tokenAddress":["0x2260FAC5E5542a773Aa44fBCfeDf7C193bc2C599"]},"headers":{}}
-Watch video here for to see the visual steps of testing in Sidevm playground: https://www.youtube.com/watch?v=fNqNeLfFFME
-
-Make sure to replace queries and secret with your values compatible with your AI Agent Contract.
+Please reach out to the team here if your run into issues: https://discord.gg/phala-network
 ```
 
 ### Publish Your AI Agent
@@ -107,7 +88,9 @@ npm run publish-agent
 Upon a successful upload, the command should show the URL to access your AI Agent.
 ```shell
 ✓ Compiled successfully.
-  72.73 KB  dist/index.js
+  1.48 KB  dist/index.js
+Running command: npx thirdweb upload dist/index.js
+This may require you to log into thirdweb and will take some time to publish to IPFS...
 
     $$\     $$\       $$\                 $$\                         $$\       
     $$ |    $$ |      \__|                $$ |                        $$ |      
@@ -123,12 +106,15 @@ Upon a successful upload, the command should show the URL to access your AI Agen
 - Uploading file to IPFS. This may take a while depending on file sizes.
 
 ✔ Successfully uploaded file to IPFS.
-✔ Files stored at the following IPFS URI: ipfs://QmayeZxHXwJxABXaNshP6j8uBE6RedkhmEgiaXd1w1Jib3
-✔ Open this link to view your upload: https://bafybeif3y2jpswse2n6s2cikwyjmbak4cxlpm6vrmgobqkgsmmn34l6m4i.ipfs.cf-ipfs.com/
+✔ Files stored at the following IPFS URI: ipfs://QmRHzszaBNMje6Yb373kmA8itWtn8c2vUnBs4ibfFfJVyB
+✔ Open this link to view your upload: https://b805a9b72767504353244e0422c2b5f9.ipfscdn.io/ipfs/bafybeibl4uqavych3sekuzs2gv2d5bhrk6tu3zxkgux226mza4evqdsj6i/
 
-AI Agent Contract deployed at: https://agents.phala.network/ipfs/QmayeZxHXwJxABXaNshP6j8uBE6RedkhmEgiaXd1w1Jib3
+Agent Contract deployed at: https://wapo-testnet.phala.network/ipfs/QmRHzszaBNMje6Yb373kmA8itWtn8c2vUnBs4ibfFfJVyB
 
-Make sure to add your secrets to ensure your AI-Agent works properly.
+If your agent requires secrets, ensure to do the following:
+1) Edit the setSecrets.ts file to add your secrets
+2) Set the variable AGENT_CID=QmRHzszaBNMje6Yb373kmA8itWtn8c2vUnBs4ibfFfJVyB in the .env file
+3) Run command: npm run set-secrets
 ```
 
 <details>
@@ -136,77 +122,73 @@ Make sure to add your secrets to ensure your AI-Agent works properly.
 We use <a href="https://thirdweb.com/dashboard/infrastructure/storage">thirdweb Storage</a> to host IPFS contents. If you are new to thirdweb, the command will guide you to create your account or login to your existing account from the browser. (You may need to forward port 8976 if you are accessing a remote console via SSH.)
 </details>
 
+<details>
+<summary>Did thirdweb fail to publish?</summary>
+If ThirdWeb fails to publish, please use any IPFS pinning service to publish your Agent Contract.
+</details>
+
 ### Access the Published AI Agent
 
-Once published, your AI Agent is available at the URL: `https://agents.phala.network/ipfs/<your-cid>`. You can get it from the "Publish to IPFS" step.
+Once published, your AI Agent is available at the URL: `https://wapo-testnet.phala.network/ipfs/<your-cid>`. You can get it from the "Publish to IPFS" step.
 
 You can test it with `curl`.
 
 ```bash
-curl https://agents.phala.network/ipfs/<your-cid>
+curl https://wapo-testnet.phala.network/ipfs/<your-cid>
 ```
 
 ### Add Secrets
 
 By default, all the compiled JS code is visible for anyone to view if they look at IPFS CID. This makes private info like API keys, signer keys, etc. vulnerable to be stolen. To protect devs from leaking keys, we have added a field called `secret` in the `Request` object. It allows you to store secrets in a vault for your AI Agent to access.
 
-<details>
-<summary><b>How to Add Secrets</b></summary>
-
-The steps to add a `secret` is simple.
-
-```json
-{"secretKey": "<SECRET_VALUE>"}
+To add your secrets,
+1) edit the [setSecrets.ts](./scripts/setSecrets.ts) file and update the `secrets` variable at the top of the file
+```typescript
+// Update your key value JSON object here for your secrets
+const secrets = JSON.stringify({
+  // Add your secrets here
+  // key: value
+  apiKey: process.env.API_KEY
+})
 ```
-
-Then in your frame code, you will be able to access the secret key via `req.secret` object:
-
-```js
-async function POST(req: Request): Promise<Response> {
-    const apiKey = req.secret?.secretKey
-}
+2) Update the [.env](./.env.example) file with your published agent IPFS CID
+```text
+AGENT_CID=QmcQbQzJop8m9uqGJTRmxVCEPoWtzx6NkNJRA12CZ6vFyT
 ```
-
-> **Note**: Before continuing, make sure to publish your compiled AI Agent JS code, so you can add secrets to the CID.
-
-**Open terminal**
-Use `curl` to `POST` your secrets to `https://agents.phala.network/vaults`. Replace `IPFS_CID` with the CID to the compile JS code in IPFS, and replace `<OPENAI_API_KEY>` with your Pond API key. Note that you can name the secret field name something other than `secretKey`, but you will need to access the key in your `index.ts` file with the syntax `req.secret?.<your-secret-field-name> as string`
-
-The command will look like this:
+3) Run command to set the secrets
 ```shell
-curl https://agents.phala.network/vaults -H 'Content-Type: application/json' -d '{"cid": "IPFS_CID", "data": {"secretKey": "<SECRET_VALUE>"}}'
-# Output:
-# {"token":"e85ae53d2ba4ca8d","key":"e781ef31210e0362","succeed":true}
+npm run set-secrets
+```
+Expected output:
+```shell
+Storing secrets...
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100   205    0    68  100   137     65    131  0:00:01  0:00:01 --:--:--   196
+{"token":"76089d09d4073e62","key":"b7fd2b6c4bf008cc","succeed":true}
+
+Secrets set successfully. Go to the URL below to interact with your agent:
+https://wapo-testnet.phala.network/ipfs/QmcQbQzJop8m9uqGJTRmxVCEPoWtzx6NkNJRA12CZ6vFyT?key=b7fd2b6c4bf008cc
 ```
 
 The API returns a `token` and a `key`. The `key` is the id of your secret. It can be used to specify which secret you are going to pass to your frame. The `token` can be used by the developer to access the raw secret. You should never leak the `token`.
 
 To verify the secret, run the following command where `key` and `token` are replaced with the values from adding your `secret` to the vault.
 ```shell
-curl https://agents.phala.network/vaults/<key>/<token>
+curl https://wapo-testnet.phala.network/vaults/<key>/<token>
 ```
 
 Expected output:
 ```shell
-{"data":{"secretKey":"<SECRET_VALUE>"},"succeed":true}
+{"data":{"openaiApiKey":"<OPENAI_API_KEY>"},"succeed":true}
 ```
-
-If you are using secrets, make sure that your URL is set in the following syntax where `cid` is the IPFS CID of your compiled JS file and `key` is the `key` from adding secrets to your vault.
-```text
-https://agents.phala.network/ipfs/<cid>?key=<key>
-```
-
-Example:
-https://agents.phala.network/ipfs/QmWMUjjC1jDapwTudYxcUqdp8Krt6ngREnSkU9Byz2EvzR/0?tokenAddress=0x2260FAC5E5542a773Aa44fBCfeDf7C193bc2C599
-
-</details>
 
 ### Access Queries
 To help create custom logic, we have an array variable named `queries` that can be accessed in the `Request` class. To access the `queries` array variable `chatQuery` value at index `0`, the syntax will look as follows:
 ```typescript
 const query = req.queries.chatQuery[0] as string;
 ```
-The example at https://agents.phala.network/ipfs/Qma2WjqWqW8wYG2tEQ9YFUgyVrMDA9VzvkkdeFny7Smn3R/0?key=686df81d326fa5f2&chatQuery=When%20did%20humans%20land%20on%20the%20moon will have a value of `When did humans land on the moon`. `queries` can have any field name, so `chatQuery` is just an example of a field name and not a mandatory name, but remember to update your `index.ts` file logic to use your expected field name.
+The example at https://wapo-testnet.phala.network/ipfs/QmcQbQzJop8m9uqGJTRmxVCEPoWtzx6NkNJRA12CZ6vFyT?key=b7fd2b6c4bf008cc&chatQuery=When%20did%20humans%20land%20on%20the%20moon will have a value of `When did humans land on the moon`. `queries` can have any field name, so `chatQuery` is just an example of a field name and not a mandatory name, but remember to update your `index.ts` file logic to use your expected field name.
 
 
 ## FAQ
@@ -217,8 +199,7 @@ The example at https://agents.phala.network/ipfs/Qma2WjqWqW8wYG2tEQ9YFUgyVrMDA9V
   <li>Most of the npm packages are supported: viem, onchainkit, ….</li>
   <li>Some packages with some advanced features are not supported:</li>
   <ul>
-    <li>Large code size. Compiled bundle should be less than 500kb.</li>
-    <li>Large memory usage, like image generation</li>
+    <li>Memory usage over 100MB</li>
     <li>Web Assembly</li>
     <li>Browser only features: local storage, service workers, etc</li>
   </ul>
@@ -230,13 +211,7 @@ The example at https://agents.phala.network/ipfs/Qma2WjqWqW8wYG2tEQ9YFUgyVrMDA9V
 <ul>
   <li>The code runs inside a tailored <a href="https://bellard.org/quickjs/">QuickJS engine</a></li>
   <li>Available features: ES2023, async, fetch, setTimeout, setInterval, bigint</li>
-  <li>Resource limits</li>
-  <ul>
-    <li>Max execution time ~120s</li>
-    <li>Max memory usage: 16 mb</li>
-    <li>Max code size: 500 kb</li>
-    <li>Limited CPU burst: CPU time between async calls is limited. e.g. Too complex for-loop may hit the burst limit.</li>
-  </ul>
+  <li> <a href="https://docs.phala.network/tech-specs/ai-agent-contract#wapojs/">Tech spec doc</a></li>
 </ul>
 </details>
 

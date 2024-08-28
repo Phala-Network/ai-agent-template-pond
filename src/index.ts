@@ -1,22 +1,34 @@
 import { Request, Response, route } from './httpSupport'
-import { renderHtml } from './uiSupport'
 
 async function GET(req: Request): Promise<Response> {
-    const tokenAddress = req.queries.tokenAddress[0] as string;
+    let result = { message: '' }
+    const secrets = req.secret || {}
+    const queries = req.queries
+    const tokenAddress = (queries.tokenAddress) ? queries.tokenAddress[0] as string : '0x2260FAC5E5542a773Aa44fBCfeDf7C193bc2C599'
     const pondBaseUrl = `http://model-v2-api-471546444.us-east-1.elb.amazonaws.com:8001/api/v1/predict/${tokenAddress.toLowerCase()}`;
 
-    const pondResult = await fetch(pondBaseUrl, {
-        method: 'GET',
-        headers: {
-            'Content-Type': 'application/json'
+    try {
+        const pondResult = await fetch(pondBaseUrl, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });
+
+        if (!pondResult.ok) {
+            result.message = `HTTP Error Status: ${pondResult.status}`
+        } else {
+            let pondPredictions = await pondResult.json();
+            pondPredictions.sort((a: { predict_at: number; }, b: { predict_at: number; }) => b.predict_at - a.predict_at)
+
+            result.message = `WBTC token is predicted to move by $${pondPredictions[0].prediction} in the next hour`
         }
-    });
-    let pondPredictions = await pondResult.json();
-    pondPredictions.sort((a: { predict_at: number; }, b: { predict_at: number; }) => b.predict_at - a.predict_at);
+    } catch (error) {
+        console.log(error)
+        result.message = `Error: ${error}`
+    }
 
-    const result = `WBTC token is predicted to move by $${pondPredictions[0].prediction} in the next hour`;
-
-    return new Response(renderHtml(result))
+    return new Response(JSON.stringify(result))
 }
 
 async function POST(req: Request): Promise<Response> {
