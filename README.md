@@ -14,7 +14,7 @@
     ·
     <a href="https://github.com/Phala-Network/ai-agent-template-pond/issues">Report Bug</a>
     ·
-    <a href="https://discord.gg/phala-network">Discord</a>
+    <a href="https://phala.com/discord">Discord</a>
   </p>
 
   <h3>Architecture Overview</h3>
